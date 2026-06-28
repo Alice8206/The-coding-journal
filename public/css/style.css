@@ -1,0 +1,1024 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap");
+
+/* ─── Reset & Base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  padding: 2.5rem 2rem;
+  line-height: 1.7;
+  overflow-x: hidden;
+  padding-top: 64px;
+}
+
+/* ─── Scanline Overlay ─────────────────────────────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 136, 0.015) 2px,
+    rgba(0, 255, 136, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Header ───────────────────────────────────────────────── */
+.heading {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 500;
+  color: #00ff88;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+.heading-main {
+  font-family: "JetBrains Mono", monospace;
+  color: #00ff88;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+
+.heading::before {
+  content: "> ";
+  color: #3fb950;
+  font-size: 0.85em;
+}
+
+body > p {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  color: #57606a;
+  margin-bottom: 2.5rem;
+  padding-left: 1.6rem;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Card ─────────────────────────────────────────────────── */
+.card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #00ff88 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover {
+  border-color: #3fb950 !important;
+  transform: translateY(-2px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ─── Card Header ──────────────────────────────────────────── */
+.card-header {
+  background: #0d1117 !important;
+  border-bottom: 1px solid #21262d !important;
+  color: #8b949e !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 0.65rem 1.1rem !important;
+  text-transform: uppercase;
+}
+
+.card-header::before {
+  content: "# ";
+  color: #3fb950;
+}
+
+/* ─── Card Body ────────────────────────────────────────────── */
+.card-body {
+  padding: 1.25rem 1.4rem !important;
+}
+
+/* ─── Card Title (Author) ──────────────────────────────────── */
+.card-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #58a6ff !important;
+  margin-bottom: 0.75rem !important;
+  letter-spacing: 0.01em;
+}
+
+.card-title::before {
+  content: "@";
+  color: #3fb950;
+  margin-right: 2px;
+}
+
+/* ─── Card Text (Preview) ──────────────────────────────────── */
+.card-text {
+  color: #8b949e !important;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem !important;
+  border-left: 2px solid #21262d;
+  padding-left: 0.85rem;
+}
+
+/* ─── Button ───────────────────────────────────────────────── */
+.btn-primary {
+  background: transparent !important;
+  border: 1px solid #3fb950 !important;
+  border-radius: 5px !important;
+  color: #3fb950 !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 1rem !important;
+  text-transform: uppercase;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #3fb950 !important;
+  color: #0d1117 !important;
+  box-shadow: 0 0 12px rgba(63, 185, 80, 0.25) !important;
+}
+
+.btn-primary::before {
+  content: "→ ";
+  font-size: 0.9em;
+}
+
+/* ─── Bootstrap card width overrides ─────────────────────── */
+.w-75 {
+  width: min(75%, 860px) !important;
+}
+
+@media (max-width: 768px) {
+  .w-75 {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  body {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ─── Add Journal Button ───────────────────────────────────── */
+.d-grid .btn-primary {
+  background: transparent !important;
+  border: 1px dashed #3fb950 !important;
+  border-radius: 6px !important;
+  color: #3fb950 !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1rem !important;
+  text-transform: uppercase;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-style 0.15s ease;
+  position: relative;
+}
+
+.d-grid .btn-primary::before {
+  content: "+ ";
+  font-size: 1em;
+  color: #3fb950;
+}
+
+.d-grid .btn-primary:hover,
+.d-grid .btn-primary:focus {
+  background: rgba(63, 185, 80, 0.08) !important;
+  border-style: solid !important;
+  color: #00ff88 !important;
+  box-shadow: 0 0 16px rgba(63, 185, 80, 0.15) !important;
+}
+.d-grid {
+  display: flex !important;
+  justify-content: flex-start !important;
+  margin: 0 0 2rem 0 !important;
+  width: auto !important;
+}
+
+.d-grid .btn-primary {
+  width: auto !important;
+  min-width: 180px;
+}
+/* ─── Add Journal Page ─────────────────────────────────────── */
+
+/* Page layout */
+.journal-form-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Form card */
+.journal-form-wrapper form {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top green accent bar */
+.journal-form-wrapper form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #00ff88 0%, transparent 60%);
+}
+
+/* Form heading */
+.journal-form-wrapper form::after {
+  content: "> Write New Blog";
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: #3fb950;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  margin-bottom: 0.5rem;
+  order: -1;
+}
+
+/* Shared input / textarea */
+.journal-form-wrapper input,
+.journal-form-wrapper textarea {
+  width: 100%;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875rem;
+  padding: 0.65rem 1rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  -webkit-appearance: none;
+}
+
+.journal-form-wrapper input::placeholder,
+.journal-form-wrapper textarea::placeholder {
+  color: #3d444d;
+}
+
+.journal-form-wrapper input:focus,
+.journal-form-wrapper textarea:focus {
+  border-color: #3fb950;
+  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.1);
+}
+
+/* Textarea */
+.journal-form-wrapper textarea {
+  min-height: 180px;
+  resize: vertical;
+  line-height: 1.75;
+}
+
+/* Submit button — matches your existing .btn-primary style */
+.journal-form-wrapper button {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid #3fb950;
+  border-radius: 5px;
+  color: #3fb950;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+  margin-top: 0.25rem;
+}
+
+.journal-form-wrapper button::before {
+  content: "→ ";
+}
+
+.journal-form-wrapper button:hover,
+.journal-form-wrapper button:focus {
+  background: #3fb950;
+  color: #0d1117;
+  box-shadow: 0 0 12px rgba(63, 185, 80, 0.25);
+}
+
+/* Hide <br> tags */
+.journal-form-wrapper br {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .journal-form-wrapper form {
+    padding: 1.5rem 1.1rem;
+  }
+
+  .journal-form-wrapper button {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+/* ─── Search Form ──────────────────────────────────────────── */
+
+form.mb-3 {
+  display: flex;
+  flex-direction: row; /* side by side */
+  align-items: stretch;
+  gap: 0;
+  max-width: 420px;
+  margin-bottom: 2rem !important;
+}
+
+form.mb-3 .form-control {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px 0 0 6px; /* round left side only */
+  border-right: none; /* remove gap between input & button */
+  color: #c9d1d9;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  outline: none;
+  flex: 1;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  -webkit-appearance: none;
+}
+
+form.mb-3 .form-control::placeholder {
+  color: #3d444d;
+}
+
+form.mb-3 .form-control:focus {
+  border-color: #3fb950;
+  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.1);
+  background: #0d1117;
+  z-index: 1;
+  position: relative;
+}
+
+form.mb-3 .btn-primary {
+  align-self: stretch;
+  width: auto !important;
+  min-width: unset !important;
+  border-radius: 0 6px 6px 0 !important; /* round right side only */
+  border-style: solid !important;
+  margin-top: 0 !important;
+  padding: 0.6rem 1.1rem !important;
+}
+
+form.mb-3 .btn-primary::before {
+  content: "⌕ ";
+  font-size: 1em;
+}
+
+@media (max-width: 480px) {
+  form.mb-3 {
+    max-width: 100%;
+  }
+}
+/* ─── Like Button ──────────────────────────────────────────── */
+
+form.like-form {
+  display: inline;
+}
+
+form.like-form .btn-danger {
+  background: transparent !important;
+  border: 1px solid #ff4d6d !important;
+  border-radius: 5px !important;
+  color: #ff4d6d !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 1rem !important;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+form.like-form .btn-danger:hover,
+form.like-form .btn-danger:focus {
+  background: #ff4d6d !important;
+  color: #0d1117 !important;
+  box-shadow: 0 0 12px rgba(255, 77, 109, 0.3) !important;
+}
+/* ─── Like Count (Index Page) ─────────────────────────────── */
+
+.like-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: #8b949e; /* muted — matches card-text color */
+  letter-spacing: 0.04em;
+  border: 1px solid #30363d; /* same border as cards */
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  text-transform: uppercase;
+  color: #ff4d6d; /* red heart & number */
+  border-color: #ff4d6d; /* red border */
+}
+/* ===== Navbar — Terminal Theme ===== */
+.navbar {
+  background-color: #0d1117 !important;
+  border-bottom: 1px dashed #3fb950;
+  font-family: "Courier New", "Fira Code", monospace;
+  padding: 0.8rem 1rem;
+}
+
+.navbar-brand {
+  color: #3fb950 !important;
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand::before {
+  content: "> ";
+  color: #58a6ff;
+}
+
+.navbar-nav .nav-link {
+  color: #c9d1d9 !important;
+  margin: 0 0.4rem;
+  padding: 0.4rem 0.9rem !important;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #3fb950 !important;
+  border-color: #3fb950;
+  background-color: rgba(63, 185, 80, 0.08);
+}
+
+.navbar-nav .nav-link.active {
+  color: #0d1117 !important;
+  background-color: #3fb950;
+  border-color: #3fb950;
+}
+
+.navbar-toggler {
+  border-color: #3fb950 !important;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1) brightness(1.8);
+}
+
+@media (max-width: 767px) {
+  .navbar-nav .nav-link {
+    margin: 0.25rem 0;
+  }
+}
+
+.bi-journal-code {
+  font-size: 1.8rem;
+  vertical-align: middle;
+  margin-right: 4px;
+  color: #00ff88;
+}
+
+/* comment  */
+
+.comment-card {
+  background-color: #0d1117;
+  border-radius: 8px;
+  border: 1px solid #2ecc71;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.comment-card .card-header {
+  background-color: #0d1117;
+  color: #2ecc71;
+  border-bottom: 1px solid #2ecc71;
+  font-family: "Courier New", monospace;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+}
+
+.comment-form textarea,
+.comment-form input {
+  background-color: #161b22;
+  color: #e6edf3;
+  border: 1px solid #2ecc71;
+  border-radius: 6px;
+  resize: none;
+  font-family: "Courier New", monospace;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.comment-form textarea::placeholder,
+.comment-form input::placeholder {
+  color: #6e7681;
+}
+
+.comment-form textarea:focus,
+.comment-form input:focus {
+  background-color: #161b22;
+  color: #e6edf3;
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.25);
+  outline: none;
+}
+
+.btn-comment {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 18px;
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+  transition: background-color 0.2s ease;
+}
+
+.btn-comment:hover {
+  background-color: #bb2d3b;
+  color: #fff;
+}
+
+.single-comment {
+  background-color: #161b22;
+  border: 1px solid #2ecc71;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.single-comment:hover {
+  border-color: #dc3545;
+  transform: translateX(2px);
+}
+
+.single-comment:last-child {
+  margin-bottom: 0;
+}
+
+.comment-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  font-family: "Courier New", monospace;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: #2ecc71;
+}
+
+.comment-date {
+  color: #6e7681;
+}
+
+.comment-text {
+  margin: 0;
+  color: #c9d1d9;
+  font-family: "Courier New", monospace;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+/* ── Signup Page – Terminal Theme ── */
+
+.signupForm {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d1117;
+  padding: 2rem 1rem;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: -80px;
+}
+
+/* Card */
+.signupForm form.col-6.offset-3 {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  background: #161b22;
+  border: 1px solid #00ff88;
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+}
+
+/* Title — add this above your form fields */
+/* <p class="form-heading"># SIGNUP : THE CODING JOURNAL</p> */
+.form-heading {
+  color: #00ff88;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1.75rem;
+}
+
+/* Labels */
+.form-label {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #00ff88;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.form-control {
+  background: #0d1117;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 4px;
+  color: #c9d1d9;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 9px 12px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.form-control:focus {
+  background: #0d1117;
+  border-color: #00ff88;
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+  color: #c9d1d9;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #3d4451;
+  font-size: 12px;
+}
+
+/* Validation */
+.valid-feedback {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #00ff88;
+  letter-spacing: 0.04em;
+}
+
+.invalid-feedback {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #ff4d4d;
+  letter-spacing: 0.04em;
+}
+
+/* Signup button */
+.signup-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 1.5rem;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0d1117; /* dark text on green bg */
+  background: #00ff88; /* solid green fill */
+  border: 1px solid #00ff88;
+  border-radius: 4px;
+  content: "→ ";
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.1s;
+}
+
+.signup-btn:hover {
+  background: #00cc6a; /* slightly darker green on hover */
+  border-color: #00cc6a;
+  color: #0d1117;
+}
+
+.signup-btn:active {
+  transform: scale(0.98);
+}
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+.loginForm {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d1117;
+  padding: 2rem 1rem;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  margin-top: -80px;
+}
+
+.loginForm form {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  background: #161b22;
+  border: 1px solid #00ff88;
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+}
+
+.form-heading {
+  color: #00ff88;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1.75rem;
+}
+
+.form-label {
+  display: block;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 11px;
+  color: #00ff88;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+  background: #0d1117;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 4px;
+  color: #c9d1d9;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 13px;
+  padding: 9px 12px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.form-control:focus {
+  background: #0d1117;
+  border-color: #00ff88;
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+  color: #c9d1d9;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #3d4451;
+  font-size: 12px;
+}
+
+.mb-3 {
+  margin-bottom: 1.1rem;
+}
+
+.invalid-feedback {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 11px;
+  color: #ff4d4d;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback {
+  display: block;
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+}
+
+.signup-hint {
+  text-align: center;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 15px;
+  color: #4a5568;
+  letter-spacing: 0.04em;
+  margin-top: 1.1rem;
+  text-transform: uppercase;
+}
+
+.signup-hint a {
+  color: #00ff88;
+  text-decoration: none;
+}
+
+.signup-hint a:hover {
+  text-decoration: underline;
+}
+.login-hint a {
+  color: #00ff88;
+  text-decoration: none;
+}
+/* Signup button */
+.login-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 1.5rem;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0d1117; /* dark text on green bg */
+  background: #00ff88; /* solid green fill */
+  border: 1px solid #00ff88;
+  border-radius: 4px;
+  content: "→ ";
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.1s;
+}
+
+.login-btn:hover {
+  background: #00cc6a; /* slightly darker green on hover */
+  border-color: #00cc6a;
+  color: #0d1117;
+}
+
+/* ─── Footer ───────────────────────────────────────────────── */
+
+.site-footer {
+  background: #0d0d0d;
+  border-top: 2px dashed #00cc66;
+  color: #ccc;
+  padding: 2rem 1.5rem 1rem;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin-top: 3rem;
+  width: 100vw; /* 👈 full viewport width */
+  margin-left: calc(-2rem);
+  margin-bottom: calc(-2rem);
+  box-sizing: border-box;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  margin: 0 0 1.5rem 0;
+}
+
+.footer-brand .brand-name {
+  color: #00cc66;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+  color: #888;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.footer-section h4 {
+  color: #00cc66;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #222;
+  padding-bottom: 0.4rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-section ul li a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-section ul li a::before {
+  content: "— ";
+  color: #444;
+}
+
+.footer-section ul li a:hover {
+  color: #00cc66;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 12px;
+  border: 1px solid #333;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.social-links a:hover {
+  color: #00cc66;
+  border-color: #00cc66;
+}
+
+.footer-bottom {
+  border-top: 1px solid #222;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.footer-bottom p {
+  color: #555;
+  font-size: 12px;
+}
+
+.footer-bottom .heart {
+  color: #00cc66;
+}
+.footer-bottom .comment {
+  color: #444;
+}
+
+/* ─── Main Content Wrapper ─────────────────────────────────── */
+.main-content {
+  padding: 1.5rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}

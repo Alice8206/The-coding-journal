@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="card w-75 mb-3 mt-3 ms-3 mr-3">
+    <div class="card-header">Title : <%= blog.title %></div>
+    <div class="card-body">
+      <h5 class="card-title">Author : <%= blog.author.username %></h5>
+      <p class="card-text">
+        Published on: <%= blog.createdAt.toLocaleDateString("en-IN") %>
+      </p>
+      <p class="card-text">Category: <%= blog.category %></p>
+      <p class="card-text"><%= blog.content %></p>
+      <form
+        method="post"
+        action="/blogs/<%=blog.id%>/likes"
+        class="like-form"
+      >
+        <button class="btn btn-danger">like ♥ <%= blog.likes %></button>
+      </form>
+    </div>
+    
+     <div class="card w-75 mb-3 ms-3 mr-3 comment-card">
+    <div class="card-header">Comments (<%= blog.comments ? blog.comments.length : 0 %>)</div>
+    <div class="card-body">
+      <% if(currUser){ %>
+
+      <form
+        method="post"
+        action="/blogs/<%= blog.id %>/comments"
+        class="comment-form mb-4 needs-validation" novalidate
+      >
+        <div class="mb-2 "  >
+          
+          <textarea
+            name="comment[text]"
+            class="form-control"
+            rows="3"
+            placeholder="Write a comment..."
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please add comment!</div>
+        </div>
+        <button type="submit" class="btn btn-comment">Post Comment</button>
+      </form>
+      <%}%>
+
+      <hr />
+      <% if(blog.comments && blog.comments.length > 0){ %>
+      <h5 class="comment-text "> > All comments</h5>
+      <%}%>
+      <% if (blog.comments && blog.comments.length > 0) { %>
+        <% blog.comments.forEach(comment => { %>
+          <div class="single-comment">
+                <div class="comment-meta">
+          <span class="comment-author"><%=comment.author.username%></span>
+        </div>
+            <p class="comment-text"><%= comment.text %></p>
+            <br />
+          
+          <form method="post" action="/blogs/<%=blog._id%>/comments/<%=comment._id%>?_method=DELETE" >
+          <button class="btn btn-primary">Delete</button>
+        </form>
+        </div>
+        <% }) %>
+      <% } else { %>
+        <h5 >No comments yet. Be the first to comment!</h5>
+      <% } %>
+
+    </div>
+  </div>
+  </div>
+  
+  <br />
+</body>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/blogs">All blogs</a>
+        <a class="nav-link" href="/blogs/new">Add new blog </a>
+      </div>
+      <div class="navbar-nav">
+        <% if(!currUser) {%>
+        <a class="nav-link" href="/signup">signup</a>
+        <a class="nav-link" href="/login">login</a>
+        <% } %>
+        <% if(currUser){ %>
+        <a class="nav-link" href="/logout">logout </a>
+        <%}%>
+      
+    </div>
+  </div>
+  <h6 class="heading-main">The Coding journal &nbsp;</h6>
+  <i class="bi bi-journal-code"></i>
+</nav>

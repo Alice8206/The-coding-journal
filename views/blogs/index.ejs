@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+<div class="main-content">
+  <body>
+    <form action="/blogs/search" method="GET" class="mb-3">
+  <input
+    type="text"
+    name="q"
+    placeholder="Search blogs..."
+    class="form-control"
+  />
+
+  <button class="btn btn-primary mt-2">
+    Search
+  </button>
+</form>
+   </div>
+    <% for(let blog of blogs){ %>
+    <div class="card w-75 mb-3 mt-3 ms-3 mr-3">
+      <div class="card-header">Title : <%= blog.title %></div>
+      <div class="card-body">
+        <h5 class="card-title">Author : <%= blog.author.username %></h5>
+        <p class="card-text">
+          <%= blog.category %>
+        </p>
+        <p class="card-text">
+          <%= blog.preview %>
+        </p>
+        <p>
+        <a href="/blogs/<%= blog.id %>" class="btn btn-primary">Read complete blog</a>&nbsp;
+        <% if(currUser && currUser._id.equals(blog.author._id)) {%>
+        <a href="/blogs/<%= blog.id %>/edit" class="btn btn-primary">Edit blog</a>
+        
+        <form method="post" action="/blogs/<%=blog.id%>?_method=DELETE" >
+          <button class="btn btn-primary">Delete blog</button>
+        <% }%>
+
+        </p>
+        <span class="like-count">♥ <%= blog.likes %></span>
+        <br />
+
+        
+        
+        
+      </div>
+    </div>
+    <br />
+    <% } %>
+
+  </body>

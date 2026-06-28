@@ -1,0 +1,31 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="journal-form-wrapper">
+    <div class="card w-75 mb-3 mt-3 ms-3 mr-3">
+      <div class="card-header">Title : <%= blog.title %></div>
+      <div class="card-body">
+        <h5 class="card-title">Author : <%= blog.author %></h5>
+        <p class="card-text"><%= blog.category %></p>
+        <p class="card-text"><%= blog.preview %></p>
+      </div>
+    </div>
+    <br />
+    <form
+      method="post"
+      action="/blogs/<%=blog.id%>?_method=PATCH"
+      class="needs-validation"
+      novalidate
+    >
+      <textarea
+        name="blog[content]"
+        placeholder="Enter content"
+        label="Content"
+        required
+      >
+<%= blog.content %></textarea
+      >
+      <div class="invalid-feedback">Please enter suitable title!</div>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</body>

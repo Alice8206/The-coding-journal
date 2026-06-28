@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="journal-form-wrapper">
+    <form class="needs-validation" method="post" action="/blogs" novalidate>
+      <input
+        placeholder="Enter title"
+        label="Title"
+        name="blog[title]"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please enter suitable title!</div>
+      <br />
+
+      <input
+        placeholder="Enter Category"
+        label="Category"
+        name="blog[category]"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Enter valid category!</div>
+      <br />
+      <input
+        placeholder="Enter your preview"
+        name="blog[preview]"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Enter preview!</div>
+      <br />
+      <textarea
+        name="blog[content]"
+        id="content"
+        ,
+        placeholder="Enter what you want to say"
+        type="text"
+        class="form-control"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please enter what you want to say!!</div>
+      <button type="button" id="improveBtn">Improve with AI</button>
+      <button>Add</button>
+    </form>
+  </div>
+</body>

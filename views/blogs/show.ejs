@@ -55,10 +55,11 @@
         </div>
             <p class="comment-text"><%= comment.text %></p>
             <br />
-          
+          <% if(currUser && currUser._id.equals(comment.author._id)){ %>
           <form method="post" action="/blogs/<%=blog._id%>/comments/<%=comment._id%>?_method=DELETE" >
           <button class="btn btn-primary">Delete</button>
         </form>
+        <%}%>
         </div>
         <% }) %>
       <% } else { %>
